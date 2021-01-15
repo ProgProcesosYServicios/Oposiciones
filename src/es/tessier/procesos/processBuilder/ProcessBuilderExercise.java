@@ -12,7 +12,7 @@ public class ProcessBuilderExercise {
   public static void main(String[] args) {
 
     if (args.length < 2) {
-      System.err.println("Se necesitan dos argumentos, un directorio y un comando a ejecutar");
+      System.err.println("Se necesitan dos argumentos, un shell, un directorio y un comando a ejecutar");
       System.exit(-1);
     }
 
@@ -23,10 +23,8 @@ public class ProcessBuilderExercise {
       System.exit(-1);
     }
 
-    ProcessBuilder processBuilder = new ProcessBuilder();
-
-    processBuilder.command(args[1], file.toString());
-
+    ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe","/c",args[1],file.toString());
+    
     // can also run the java file like this
     //  processBuilder.command(args[1]);
     // processBuilder.directory(file.toFile());
@@ -47,7 +45,7 @@ public class ProcessBuilderExercise {
       System.out.println("\nExited with error code : " + exitCode);
 
     } catch (IOException e) {
-      e.printStackTrace();
+    	e.printStackTrace();
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
